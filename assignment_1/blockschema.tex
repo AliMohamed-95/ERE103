@@ -1,0 +1,48 @@
+\documentclass{article}
+
+\usepackage{tikz}
+\usetikzlibrary{shapes,arrows}
+\begin{document}
+
+
+\tikzstyle{block} = [draw, rectangle, 
+    minimum height=3em, minimum width=3em]
+\tikzstyle{sum} = [draw, circle, node distance=3cm]
+\tikzstyle{sum1} = [draw, circle, node distance=3cm, inner sep=0pt]
+
+\tikzstyle{input} = [coordinate]
+\tikzstyle{output} = [coordinate]
+\tikzstyle{pinstyle} = [pin edge={to-,thin,black}]
+\newcommand{\summa}{\huge$\sum_{}^{}$}
+
+% The block diagram code is probably more verbose than necessary
+\begin{tikzpicture}[auto, node distance=2cm,>=latex']
+    % We start by placing the blocks
+    \node [input, name=input] {};
+    
+    \node [sum, right of=input, ] (sum) {\summa};
+    \node [block, right of=sum, ] (F) {F(s)};
+    \node [block, right of=F, ] (G) {G};
+    \node [sum, right of=G] (system) {\summa};
+    \node [block, above of=system] (K) {$K_u$};       
+    \node [block, right of=system] (G2) {$G_m (s)$};
+    \node [sum, below of= system] (sum2) {$\Omega$} ;
+    
+    \draw [->] (sum) -- node {} (F);
+    \draw [->] (F) -- node[name=u] {$u$} (G);
+    \draw [->] (G) -- node[name=gc] {} (system);
+    \draw [->] (K) -- node[name=ksys] {} (system);
+    \draw [->] (system) -- node[name=gc] {} (G2);
+    \node [output, right of=G2] (output) {out};
+   
+    \draw [->] (input) -- node [name=line] {$\Omega$} (sum);
+    \draw [->] (G2) -- node [name=y] {$\Omega$}(output);
+    \draw [->] (y) |- node  {}(K);
+    \draw [-] (y) |- node  {}(sum2);
+    \draw [->]	(sum2) -| node[pos=0.95] {$-$} node [near end]   {}(sum);
+    
+    
+
+\end{tikzpicture}
+
+\end{document}
