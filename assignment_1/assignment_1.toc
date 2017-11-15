@@ -1,0 +1,19 @@
+\select@language {swedish}
+\contentsline {section}{\numberline {1}Laplacetransformeringar och \IeC {\"o}verf\IeC {\"o}ringsfunktioner}{1}{section.1}
+\contentsline {subsection}{\numberline {1.1}Identifiera \IeC {\"o}verf\IeC {\"o}ringsfunktionen: Elektrisk}{1}{subsection.1.1}
+\contentsline {subsection}{\numberline {1.2}Identifiera \IeC {\"o}verf\IeC {\"o}ringsfunktionen: Mekanisk}{2}{subsection.1.2}
+\contentsline {subsection}{\numberline {1.3}Best\IeC {\"a}m tidskonstanten f\IeC {\"o}r det mekaniska och elektriska systemen}{2}{subsection.1.3}
+\contentsline {subsection}{\numberline {1.4}Best\IeC {\"a}m \IeC {\"o}verf\IeC {\"o}ringsfunktionen}{2}{subsection.1.4}
+\contentsline {section}{\numberline {2}Varvtalsreglering}{3}{section.2}
+\contentsline {subsection}{\numberline {2.1}Blockschema f\IeC {\"o}r systemet}{3}{subsection.2.1}
+\contentsline {subsection}{\numberline {2.2}Best\IeC {\"a}m det kvarst\IeC {\r a}ende felet}{3}{subsection.2.2}
+\contentsline {subsubsection}{\numberline {2.2.1}P-reglering}{3}{subsubsection.2.2.1}
+\contentsline {subsubsection}{\numberline {2.2.2}PI-reglering}{4}{subsubsection.2.2.2}
+\contentsline {subsection}{\numberline {2.3}J\IeC {\"a}mf\IeC {\"o}r P-,I- och PI-reglering}{4}{subsection.2.3}
+\contentsline {section}{\numberline {3}Positionsreglering}{4}{section.3}
+\contentsline {subsection}{\numberline {3.1}Blockschema f\IeC {\"o}r systemet}{4}{subsection.3.1}
+\contentsline {subsection}{\numberline {3.2}Best\IeC {\"a}m kvarst\IeC {\r a}ende felet}{4}{subsection.3.2}
+\contentsline {subsubsection}{\numberline {3.2.1}P-reglering}{5}{subsubsection.3.2.1}
+\contentsline {subsection}{\numberline {3.3}Best\IeC {\"a}m d\IeC {\"a}mpningsfaktorn och sv\IeC {\"a}ngningsfrekvensen}{5}{subsection.3.3}
+\contentsline {subsection}{\numberline {3.4}Unders\IeC {\"o}k d\IeC {\"a}mpningen}{5}{subsection.3.4}
+\contentsline {section}{\numberline {4}Styrsignal}{5}{section.4}

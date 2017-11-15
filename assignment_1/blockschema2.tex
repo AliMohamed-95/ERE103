@@ -28,20 +28,23 @@
     \node [block, above of=sum2] (K) {$K_u$};       
     \node [block, right of=G] (G2) {$G_m (s)$};
     \node [sum, below of= sum2] (omega) {$\Omega$} ;
+    \node [block, right of = G2] (integ){$\int$};
     
     \draw [->] (summa) -- node {E} (F);
     \draw [->] (F) -- node[pos=0.95] {$ + $} node [near end] [name=u] {u} (sum2);
+    
     \draw [->] (sum2) -- node[name=gc] {} (G);
     \draw [->] (K) -- node [pos=0.95] {$ - $} node [near end][name=ksys] {} (sum2);
     \draw [->] (G) -- node[name=gc] {T} (G2);
-    \node [output, right of=G2] (output) {out};
+    \node [output, right of=integ] (output) {out};
    
-    \draw [->] (input) -- node[pos=0.95] {$ + $} node [near end] [name=line] {$\Omega_r$} (summa);
+    \draw [->] (input) -- node[pos=0.95] {$ + $} node [near end] [name=line] {$\phi_r$} (summa);
      
     
-    \draw [->] (G2) -- node [name=y] {$\Omega$}(output);
-    \draw [->] (y) |- node  {}(K);
-    \draw [-] (y) |- node  {}(omega);
+    \draw [->] (G2) -- node [name=y] {$\Omega$}(integ);
+   \draw [->] (y) |- node  {}(K);
+    \draw [->] (integ) -- node [name=outl] {$\phi$}(output);
+   \draw [-] (outl) |- node  {}(omega);
     \draw [->]	(omega) -| node[pos=0.95] {$-$} node [near end]   {}(summa);
     
     
