@@ -144,6 +144,8 @@ I&0&4.0 \\ \hline
 PI&0.1&4.0 \\ \hline
 \end{tabular}
 \begin{figure}[h!]
+\centering
+\includegraphics[scale=0.45]{Figures/plot1}
 \caption{Mathlab-plot av P-, I- och PI-reglering}
 \end{figure}
 \section{Positionsreglering}
@@ -212,6 +214,20 @@ G(s)&= \dfrac{K_pG_{uw}(s)}{s+K_pG_{uw}(s)} = \dfrac{\dfrac{K_mK_P}{K_mK_u+(R_a+
 \end{split}
 \end{equation*}
 \subsection{Undersök dämpningen}
+\begin{tabular}{|l|l|}
+\hline
+$K_p$&$\zeta$ \hspace*{1em} \\ \hline \hline 
+26.9720 & 0.25 \\ \hline
+6.7430&0.5\\ \hline
+1.6858&1.0\\ \hline
+\end{tabular}
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.45]{Figures/plot2}
+\caption{Matlab-plot av olika dämpningar $\zeta$}
+\end{figure}\\[1em]
+Vid högre värden på dämpningsfaktorn $\zeta$ till mindre översäng. Vidare tar det längre tid för system med hög dämpningsfaktor att nå sitt slutvärde.
+
 \section{Styrsignal}
 Identifiera konstanterna \texttt{C0} och \texttt{C1}. Regulatorn har realiserats till källkoden nedan skriven i språket C. Referensvärdet (börvärdet) ges av \texttt{reference} medan utsignalen (ärvärdet) ges av \texttt{actual\_output}.
 
