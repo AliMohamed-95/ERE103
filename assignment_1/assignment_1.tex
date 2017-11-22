@@ -1,6 +1,7 @@
 \documentclass[11pt]{article}
 \input{../settings/settings.tex}
-
+\usepackage{tikz}
+\usetikzlibrary{shapes,arrows}
 \begin{document}
 \input{titlepage_1}
 \tableofcontents
@@ -90,6 +91,48 @@ G_{uw} &= \dfrac{\dfrac{\tau_d(s)}{Is+b}}{\dfrac{\tau_d(s)}{K_m}\Big(R_a+L_as\Bi
 \end{equation*}
 \section{Varvtalsreglering}
 \subsection{Blockschema för systemet}
+\tikzstyle{block} = [draw, rectangle, 
+    minimum height=3em, minimum width=3em]
+\tikzstyle{sum} = [draw, circle, node distance=3cm]
+
+
+\tikzstyle{input} = [coordinate]
+\tikzstyle{output} = [coordinate]
+\tikzstyle{pinstyle} = [pin edge={to-,thin,black}]
+\newcommand{\summa}{\huge$\sum_{}^{}$}
+
+% The block diagram code is probably more verbose than necessary
+\begin{tikzpicture}[auto, node distance=2cm,>=latex']
+    % We start by placing the blocks
+    \node [input, name=input] {};
+    
+    \node [sum, right of=input, ] (summa) {\summa};
+    \node [block, right of=summa, ] (F) {F(s)};
+    \node [sum, right of=F] (sum2) {\summa};
+    \node [block, right of=sum2, ] (G) {$G_e(s)$};
+    
+    \node [block, above of=sum2] (K) {$K_u$};       
+    \node [block, right of=G] (G2) {$G_m (s)$};
+    \node [sum, below of= sum2] (omega) {$\Omega$} ;
+    
+    \draw [->] (summa) -- node {E} (F);
+    \draw [->] (F) -- node[pos=0.95] {$ + $} node [near end] [name=u] {u} (sum2);
+    \draw [->] (sum2) -- node[name=gc] {} (G);
+    \draw [->] (K) -- node [pos=0.95] {$ - $} node [near end][name=ksys] {} (sum2);
+    \draw [->] (G) -- node[name=gc] {T} (G2);
+    \node [output, right of=G2] (output) {out};
+   
+    \draw [->] (input) -- node[pos=0.95] {$ + $} node [near end] [name=line] {$\Omega_r$} (summa);
+     
+    
+    \draw [->] (G2) -- node [name=y] {$\Omega$}(output);
+    \draw [->] (y) |- node  {}(K);
+    \draw [-] (y) |- node  {}(omega);
+    \draw [->]	(omega) -| node[pos=0.95] {$-$} node [near end]   {}(summa);
+    
+    
+
+\end{tikzpicture}
 \subsection{Bestäm det kvarstående felet}
 Det kvarstående felet beräknas genom att beräkna gränsvärden för reglerfelet $e_s$ d.v.s $\lim_{t \to \infty} e_s(t)$. Genom att laplacetransformera reglerfelet och tillämpa slutvädersstaten blir gränsvärdet $\lim_{s \to 0}sE(s)$. Nedan tillkommer lite ekvationer och samband som finns i labb-PM:et. 
 
@@ -150,7 +193,51 @@ PI&0.1&4.0 \\ \hline
 \end{figure}
 \section{Positionsreglering}
 \subsection{Blockschema för systemet}
+\tikzstyle{block} = [draw, rectangle, 
+    minimum height=3em, minimum width=3em]
+\tikzstyle{sum} = [draw, circle, node distance=3cm]
 
+
+\tikzstyle{input} = [coordinate]
+\tikzstyle{output} = [coordinate]
+\tikzstyle{pinstyle} = [pin edge={to-,thin,black}]
+\renewcommand{\summa}{\huge$\sum_{}^{}$}
+
+% The block diagram code is probably more verbose than necessary
+\begin{tikzpicture}[auto, node distance=2cm,>=latex']
+    % We start by placing the blocks
+    \node [input, name=input] {};
+    
+    \node [sum, right of=input, ] (summa) {\summa};
+    \node [block, right of=summa, ] (F) {F(s)};
+    \node [sum, right of=F] (sum2) {\summa};
+    \node [block, right of=sum2, ] (G) {$G_e(s)$};
+    
+    \node [block, above of=sum2] (K) {$K_u$};       
+    \node [block, right of=G] (G2) {$G_m (s)$};
+    \node [sum, below of= sum2] (omega) {$\Omega$} ;
+    \node [block, right of = G2] (integ){$ 1 /s$};
+    
+    \draw [->] (summa) -- node {E} (F);
+    \draw [->] (F) -- node[pos=0.95] {$ + $} node [near end] [name=u] {u} (sum2);
+    
+    \draw [->] (sum2) -- node[name=gc] {} (G);
+    \draw [->] (K) -- node [pos=0.95] {$ - $} node [near end][name=ksys] {} (sum2);
+    \draw [->] (G) -- node[name=gc] {T} (G2);
+    \node [output, right of=integ] (output) {out};
+   
+    \draw [->] (input) -- node[pos=0.95] {$ + $} node [near end] [name=line] {$\phi_r$} (summa);
+     
+    
+    \draw [->] (G2) -- node [name=y] {$\Omega$}(integ);
+   \draw [->] (y) |- node  {}(K);
+    \draw [->] (integ) -- node [name=outl] {$\phi$}(output);
+   \draw [-] (outl) |- node  {}(omega);
+    \draw [->]	(omega) -| node[pos=0.95] {$-$} node [near end]   {}(summa);
+    
+    
+
+\end{tikzpicture}
 \subsection{Bestäm kvarstående felet}
 Det kvarstående felet bestäms genom att tillämpa slutvädersstaten. Förutsatt att $E(\infty)$ existerar medför detta $\lim_{t \to \infty}e_s(t) = \lim_{s \to 0}sE(s)$ Nedan kommer ekvationer och samband från labb-PM:et.
 

@@ -1,0 +1,249 @@
+\documentclass[11pt]{article}
+\input{../settings/settings.tex}
+
+\begin{document}
+\input{titlepage_2}
+\tableofcontents
+\pagestyle{empty}
+\newpage
+\setcounter{page}{1}
+\pagestyle{fancy}
+
+\section{Tillståndsmodell}
+\subsection{a)}
+För att bevisa uttrycket för tillståndsekvationen $$\dot{z_3} =\dfrac{1}{M+m\sin^2(z_1)}(-md\sin(z_1)z_2^2+gm\cos(z_1)\sin(z_1)+\dfrac{T_d}{r})$$
+måste följande samband och ekvationer härledas.
+\begin{equation}
+(M+m)\dot{z_3}-md\cos(z_1)\dot{z_2}+md\sin(z_1)z_2^2 = \dfrac{T_d}{r}
+\end{equation}
+\begin{equation}
+\cos(z_1)\dot{z_3}-dz_2+g\sin(z_1)=0
+\end{equation}
+För att bestämma tillståndsvariabeln $\dot{z_3}$ förlängs ekv. 2 med $m\cos(z_1)$, detta görs för att reducera $\dot{z_2}$. Ekv. 2 blir då istället:
+\begin{equation}
+m\cos^2(z_1)\dot{z_3}-md\cos(z_1)\dot{z_2}+gm\cos(z_1)\sin(z_1)=0
+\end{equation}
+Genom en subtraktion mellan ekv. 1 och 3 fås \begin{equation*}
+(M+m-m\cos^2(z_1))\dot{z_3}-md\sin(z_1)z_2^2-gm\cos(z_1)\sin(z_1) = \dfrac{T_d}{r}
+\end{equation*} Genom att använda sambandet $\sin^2(x)+\cos^2(x)=1$ och bryta ut $\dot{z_3}$ fås:
+$$\dot{z_3} =\dfrac{1}{M+m\sin^2(z_1)}(-md\sin(z_1)z_2^2+gm\cos(z_1)\sin(z_1)+\dfrac{T_d}{r})$$
+\newpage
+\subsection{b)}
+Det elektriska systemet beskrivs av följande differentialekvation:
+\begin{equation}
+-u+R_ai_a(t)+L_a\dfrac{d}{dt}i_a(t)+k_u\omega_a(t) =0
+\end{equation} Vidare kan strömmen $i_a(t)$ och vinkelhastigheten $\omega_a(t)$ beskrivas av följande samband \begin{equation}
+T_d = k_mi_a(t) \Rightarrow i_a(t)=\dfrac{T_d}{k_m}
+\end{equation}
+\begin{equation}
+\overrightarrow{v_a} = \omega_a\cdot r \Rightarrow \omega_a = \dfrac{\overrightarrow{v_a}}{r}
+\end{equation}
+Genom att substituera strömmen och vinkelhastigheten från ekv. (5) och (6) blir ekv. (4) följande. Notera att $\overrightarrow{v_a} =z_3 $ medan $i_a(t) = z_4$ 
+$$
+-u+R_az_4+L_a\dot{z_4}+k_uz_3=0 \Rightarrow \dot{z_4}=\dfrac{u}{L_a}-z_3\dfrac{k_u}{rL_a}-z_4\dfrac{R_a}{L_a}
+$$
+Med tillståndsvariabeln $\dot{z_4}$ kan systemets tillståndsmodell bestämmas till:\\[1.5em]
+$
+\begin{bmatrix}
+\dot{z_1}\\
+\dot{z_2}\\
+\dot{z_3}\\
+\dot{z_4}\\
+\end{bmatrix}
+$ =$
+\begin{bmatrix}
+z_2\\
+\dfrac{1}{d(M+m\sin^2(z_1))}(-md\cos(z_1)\sin(z_1)z_2^2+g(m+M)sin(z_1)+\cos(z_1)\dfrac{k_mz_4}{r})\\
+\dfrac{1}{M+m\sin^2(z_1)}(-md\sin(z_1)z_2^2+gm\cos(z_1)\sin(z_1)+\dfrac{k_mz_4}{r})\\
+\dfrac{u}{L_a}-z_3\dfrac{k_u}{rL_a}-z_4\dfrac{R_a}{L_a}\\
+\end{bmatrix}
+$
+\newpage
+\section{Jämviktspunkter}
+\subsection{a)}
+Bestäm jämviktspunkterna för det olinjära systemet. En jämviktspunkt definieras av
+att tidsderivatan av alla tillståndsvariabler ska vara 0 vilket medför att alla tillståndvariabler
+är konstanta. Dessa fås därför genom att lösa ekvationssystemet.
+$$
+0=f_i(z_{i0}u_0), \quad i=1,...4
+$$ \\[0.5em]
+För att bestämma jämviktspunkterna för det olinjära systemet, måste matrisen sättas till noll på sid. 2 d.v.s. att lösa ekvationssystemet. 
+\\[1em]
+$
+\begin{cases}
+z_{20} =0\\
+\dfrac{1}{d(M+m\sin^2(z_{10}))}(-md\cos(z_{10})\sin(z_{10})z_{20}^2+g(m+M)sin(z_{10})+\cos(z_{10})\dfrac{k_mz_{40}}{r}) =0\\
+\dfrac{1}{M+m\sin^2(z_{10})}(-md\sin(z_{10})z_{20}^2+gm\cos(z_{10})\sin(z_{10})+\dfrac{k_mz_{40}}{r}) =0\\
+\dfrac{u}{L_a}-z_{30}\dfrac{k_u}{rL_a}-z_{40}\dfrac{R_a}{L_a} =0\\
+\end{cases}
+$ \\[1em]
+Genom att substituera $Z_{20}=0$ i alla led och bryta loss gemensam nämnare fås \\ [1em]
+$
+\begin{cases}
+z_{20} =0\\
+g(m+M)sin(z_{10})+\cos(z_{10})\dfrac{k_mz_{40}}{r} =0\\
+gm\cos(z_{10})\sin(z_{10})+\dfrac{k_mz_{40}}{r} =0\\
+u-z_{30}\dfrac{k_u}{r}-z_{40}R_a =0\\
+\end{cases}
+$\\[1em]
+Från system ekvationen fås 
+\begin{equation*}
+g(m+M)sin(z_{10})+\cos(z_{10})\dfrac{k_mz_{40}}{r} =0\\ \Rightarrow z_{40} = -\dfrac{g(m+M)\sin(z_{10})}{k_m\cos(z_{10})}
+\end{equation*}
+Genom att substituera $z_{40}$ med tredje ekvationen i systemekvationen fås
+\begin{equation*}
+gm\cos(z_{10})\sin(z_{10})-\dfrac{g(m+M)\sin(z_{10})}{\cos(z_{10})} =0, \ z_{10} =0 \ + \ \pm \pi n \quad n \in \mathbb{N}
+\end{equation*} Detta betyder vidare att \begin{equation*}
+ z_{40} = -\dfrac{g(m+M)\sin(z_{10})}{k_m\cos(z_{10})} =g(m+M)tan(z_{10}) =0
+\end{equation*}
+Genom att tillämpa ovanstående samband från tillståndvariablerna på den sista ekvationen fås
+\begin{equation*}
+u-z_{30}\dfrac{k_u}{r} =0 \Rightarrow z_{30} = u\dfrac{r}{k_u}
+\end{equation*}
+Genom att kombinera ovanstående blir jämviktspunkten:\\[1em]
+$
+\begin{bmatrix}
+z_{10}\\
+z_{20}\\
+z_{30}\\
+z_{40}\\
+\end{bmatrix}
+$
+=$
+\begin{bmatrix}
+\theta\\
+\dot{\theta}\\
+\overrightarrow{v_a}\\
+i_a\\
+\end{bmatrix}
+$
+=$
+\begin{bmatrix}
+0+\pm \pi n\\
+0\\
+u\dfrac{r}{k_u}\\
+0\\
+\end{bmatrix}
+$
+\subsection{b)}
+Eftersom att den matematiska modellen inte betraktar markplanet kan det konstateras att roboten roterar kring sin axel. En jämviktspunkt blir således när roboten är stillastående. En ytterligare jämviktspunkt blir när roboten har en konstant hastighet. Det finns en relation mellan motorspänning och hastigheten som ges av:
+\begin{equation*}
+u = k_u\omega
+\end{equation*}
+Detta medför att jämviktsläget istället uppnås genom en konstant motorspänning. \newpage
+\section{Linjärisering av systemet}
+Roboten skall linjäriseras vid jämviktspunkten då roboten är upprätt stillastående vilket medför att motorspänningen är 0. Detta ger följande: \\[1em]
+
+$
+\begin{bmatrix}
+
+z_{20}\\
+z_{30}\\
+z_{40}\\
+\end{bmatrix}
+$ = $
+\begin{bmatrix}
+0\\
+0\\
+0\\
+0\\
+\end{bmatrix}
+$\\[0.5em]
+Eftersom att utsignalen är $\theta = z_1$ behöver man linjärisera de tillståndekvationer som innehåller $z_1$ nämligen:\\[1em]
+$
+\begin{cases}
+\dot{z_2} = f_2(z_1,z_2,z_4)\\
+\dot{z_3} = f_3(z_1,z_2,z_4)
+\end{cases}
+$\\[1em]
+För att förenkla linjäriseringen av den olinjära
+modellen skall nyttjas några egenskaper för sin och cos vid små vinklar. För vinklar $z$ nära noll kan följande approximationer göras:\\
+$\sin(z)\approx z \ \text{och} \ \cos(z)\approx 1$.  Vi nyttjar även att $f_2$ och $f_3$ inte beror av $z_3$ därmed blir partialderivatan:\\[0.5em]
+$\dfrac{\partial f_2}{\partial z_3}\bigg\rvert_{z_0}=0 \ \text{och} \ \dfrac{\partial f_3}{\partial z_3}\bigg\rvert_{z_0}=0$\\[2em]
+\textbf{Partialderivator för $f_2$}\\[0.1em]
+\begin{flalign*}
+\dfrac{\partial f_2}{\partial z_1}\bigg\rvert_{z_0}&= \dfrac{(-mdz_2^2+g(m+M))\cdot(mdz_1^2+Md)-2mdz_1(gz_1(m+M)-mdz_1z_2^2+\frac{k_uz_4}{4})}{(mdz_1^2+Md)^2}\bigg\rvert_{z_0}&\\
+&= \dfrac{g(m+M)}{Md} = \dfrac{g}{d}+\dfrac{gm}{Md}&\\[0.5em]
+\dfrac{\partial f_2}{\partial z_2}\bigg\rvert_{z_0}&=
+-\dfrac{2mdz_1z_2}{mdz_1^2+Md}\bigg\rvert_{z_0}=0&\\[0.5em]
+\dfrac{\partial f_2}{\partial z_4}\bigg\rvert_{z_0}&=\dfrac{\dfrac{k_m}{r}}{mdz_1^2+Md}\bigg\rvert_{z_0} = \dfrac{k_m}{Mdr}
+\end{flalign*}
+\newpage
+\textbf{Partialderivator för $f_3$}\\[0.5em]
+\begin{flalign*}
+\dfrac{\partial f_3}{\partial z_1}\bigg\rvert_{z_0}&=\dfrac{(mg-mdz_2^2)(mz_1^2+M)-2mz_1(mgz_1-mdz_1z_2^2+\dfrac{k_mz_4}{r})}{(mz_1^2+M)^2}\bigg\rvert_{z_0} =
+\dfrac{mg}{M}&\\[0.5em]
+\dfrac{\partial f_3}{\partial z_2}\bigg\rvert_{z_0}&=-\dfrac{2mdz_1z_2}{mz_1^2+M}\bigg\rvert_{z_0}=0&\\[0.5em]
+\dfrac{\partial f_3}{\partial z_4}\bigg\rvert_{z_0}&=\dfrac{\dfrac{k_m}{r}}{mz_1^2+M}\bigg\rvert_{z_0} =\dfrac{K_m}{Mr}
+\end{flalign*}
+Den linjära tillståndsmodellen blir således:\\[1em]
+$
+\begin{bmatrix}
+\Delta z_{1}\\
+\Delta z_{2}\\
+\Delta z_{3}\\
+\Delta z_{4}\\
+\end{bmatrix}
+$=$
+\underbrace{
+\begin{bmatrix}
+0&1&0&0\\
+\dfrac{g}{d}+\dfrac{mg}{Md}&0&0&\dfrac{K_m}{Mdr}\\
+\dfrac{mg}{M}&0&0&\dfrac{k_m}{Mr}\\
+0&0&-\dfrac{k_u}{rL_a}&-\dfrac{R_a}{L_a}
+\end{bmatrix}}_{A}
+\begin{bmatrix}
+\Delta z_1\\
+\Delta z_2\\
+\Delta z_3\\
+\Delta z_4\\
+\end{bmatrix}
++
+\underbrace{
+\begin{bmatrix}
+0\\
+0\\
+0\\
+\dfrac{1}{L_a}
+\end{bmatrix}}_{B}
+\Delta u
+$\\[0.5em]
+$
+\Delta y = \underbrace{\begin{bmatrix}
+1&0&0&0\\
+\end{bmatrix}}_{C}\Delta z
+$
+\newpage
+\section{Beräkningar och simuleringar i Matlab/Simulink
+}
+Överföringsfunktionen	för	den	linjära	tillståndsmodellen fås	genom	implementering	av	
+tillståndsmodellen	i	Matlabscriptet: Define\texttt{\_Balanduino\_Model.m}. Följande	överingsfunktion	
+erhålls
+\begin{flalign*}
+G(s)&=\dfrac{7.247\cdot 10^4s}{s^4+9600\cdot s^3+8.186\cdot 10^4\cdot s^2-7.282\cdot 10^5 \cdot s-4.466 \cdot 10^6 }
+\end{flalign*}
+med tillhörande poler:\\[1em]
+$
+\begin{cases}
+P_1=-9.5915\cdot 10^3\\
+P_2= 0.0081 \cdot 10^3\\
+P_3=-0.0116 \cdot 10^3 \\
+P_4 = -0.0050 \cdot 10^3\\
+\end{cases}
+$
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
