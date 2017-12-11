@@ -105,6 +105,39 @@ $
 \includegraphics[scale=1]{Figures/bodeplot}
 \caption{Bodediagram över processen}
 \end{figure}
+\newpage
+Det skall designas en PI-regulator med som ger en fasmarginal $\varphi = \frac{\pi}{3}$ vid överkorsningsfrekvensen $\omega_c = 0.75 \ rad/s$. Regulatorn har följande parametrisering
+\begin{equation*}
+\bar{F}_v(s) = K^v_p+\dfrac{K_i^v}{s} = \bigg(1+\dfrac{1}{T_i^vs}\bigg), \quad T_i^v=\dfrac{K_p^v}{K_i^v}.
+\end{equation*}
+Med önskad fasmarginal $\varphi$ och medföljande överkorsningsfrekvens $\omega_c$ är nästa steg att bestämma $|\bar{F}_v(j\omega_c)|$ samt $\angle \  \bar{F}(j\omega_c)$. Från bodediagrammet (fig. 2) på föregående sida fås
+\begin{flalign*}
+&arg\{ \bar{F}(j\omega_c)\} = -\tan\bigg(\dfrac{1}{\omega_c T_i^v}\bigg)^{-1} = -180+60-(91.8-180) \approx -31.8^\circ & \\
+&\Rightarrow -\tan\bigg(\dfrac{1}{\omega_c T_i^v}\bigg)^{-1}\approx -31.9^\circ, \quad \Rightarrow T_i^v = 2.1338
+\end{flalign*}\\[0.5em]
+Vidare har vi att
+\begin{flalign*}
+&|\bar{F}_v(j\omega_c)| = \dfrac{1}{|G_p(j\omega_c)|}=\bigg\{|G_p(j\omega_c)| = 13.2589\bigg\} = \dfrac{1}{13.2589} \approx 0.07542&
+\end{flalign*}
+och från den givna parametriseringen från labb PM:et fås
+\begin{flalign*}
+& |\bar{F}_v(j\omega_c)| = K_p^v|1+\dfrac{1}{T_i^vj\omega_c}| = K_p^v\sqrt{1+\bigg(\dfrac{1}{T_i^v\omega_c}\bigg)^2},
+\Rightarrow K_p^v = \dfrac{\dfrac{1}{|G_p(j\omega_c)|}}{\sqrt{1+\bigg(\dfrac{1}{T_i^v\omega_c}\bigg)^2}}
+\approx 0.06396 &
+\end{flalign*}
+Vidare finns givet att
+\begin{flalign*}
+T_i^v=\dfrac{K_p^v}{K_i^v}, \Rightarrow K_i^v=\dfrac{K_p^v}{T_i^v} \approx 0.029975
+\end{flalign*}\\[2em]
+$
+\begin{cases}
+K_p^v = -0.06396\\
+K_i^v = -0.029975
+\end{cases}
+$
+\newpage
+\section{Simulering av det återkopplade systemet}
+
 
 \end{document}
 
