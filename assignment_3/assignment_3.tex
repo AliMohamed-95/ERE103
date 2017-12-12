@@ -200,15 +200,38 @@ $
 $
 \newpage
 \section{Reglerdesign - Yttre loop}
-
-
-
-
+Det skall designas en PD-regulator med som ger en fasmarginal $\varphi = \frac{\pi}{4}$ vid överkorsningsfrekvensen $\omega_c = 0.4 \ rad/s$. Regulatorn har följande parametrisering
+\begin{equation*}
+\bar{F}_p(s)  = K_p^p+\dfrac{K_d^ps}{1+sT_f^p} = K_p^p \bigg(1+\dfrac{T_d^ps}{1+sT_f^p}\bigg), \quad T_d^p=\dfrac{K_d^p}{K_p^p}.
+\end{equation*}
+Genom att använda bodediagrammet och m.h.a. MATLAB fås
+\begin{flalign*}
+&|G_{p^\prime}(j\omega_c)|_{dB} =35.7\text{ dB} \ \text{vid} \ \approx 0.4 rad/s, \quad \Rightarrow |G_{p^\prime}(j\omega_c)| \approx 61 \quad (20\log_{10}|G_{p^\prime}(j\omega)|) &\\[0.5em]
+&arg\{G_{p^\prime}(j\omega_c)\} \approx 181^\circ
+\end{flalign*}
+Vi kan nu få
+\begin{flalign*}
+&|F_{PD}(j\omega_c)|=\dfrac{1}{|G_{p^\prime}(j\omega_c)|} \approx 0.0164059&
+\end{flalign*}
+$\varphi_{max}$ fås från den givna formelsamlingen ``Reglerteknik M3 och D3''
+\begin{flalign*}
+\varphi_{max} = -180^\circ + \varphi_m - arg\{G_{p^\prime}(j\omega_c)\} = -316^\circ
+\end{flalign*}
+Därefter kan $b$ fås genom
+\begin{flalign*}
+&b = \dfrac{1+\sin(\varphi_{max})}{1-\sin(\varphi_{max})} = \dfrac{1+\sin(-316^\circ)}{1-\sin(-316^\circ)} \approx 5.55, \quad \Rightarrow \tau_d = \dfrac{\sqrt{b}}{\omega_c} \approx 5.89 &
+\end{flalign*}
+Ett samband från formelsamlingen
+\begin{equation}
+F_{PD} = K_p^p=\bigg(\dfrac{1+s\cdot \tau_d}{1+s\cdot \dfrac{\tau_d}{b}}\bigg), \quad b > 1
+\end{equation}
+\begin{flalign*}
+&|F_{PD}(j\omega_c)| = K_p^p\cdot\Bigg(\dfrac{\sqrt{1+(\omega_c \tau_d)^2}}{\sqrt{1+(\dfrac{\omega_c \tau_d}{b})^2}}\Bigg), \quad \Rightarrow K_p^p \approx 0.006963596 &
+\end{flalign*}
+Identifiering av övriga regulatorparametrar
+\begin{flalign*}
+&K_p^p\cdot \bigg(\dfrac{1+s\cdot \tau_d}{1+s\cdot \dfrac{\tau_d}{b}}\bigg) = K_p^p+\dfrac{K_p^pT_d^ps}{1+sT_f^p}, \quad \Rightarrow s\dfrac{\tau_d}{b} = T_f^ps & \\
+&\Rightarrow T_f^p \approx 1.061261261\\[1em]
+&T_d^p = \dfrac{K_d^p}{K_p^p}, \quad \Rightarrow K_d^p = K_p^p\cdot T_d^p, \quad \Rightarrow K_d^p \approx 0.0336253
+\end{flalign*}
 \end{document}
-
-
-
-
-
-
-
