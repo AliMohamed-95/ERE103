@@ -174,21 +174,37 @@ $
 \end{figure}
 \newpage
 \section{Bestäm parametrarna \texttt{c0, c1, c2, c3}}
-
+\begin{lstlisting}[frame=single]
+void loop()
+{
+h = time_since_last_sample(); // in seconds
+double theta = getTheta(); // angular orientation (rad)
+double v = getSpeed(h); // longitudinal velocity (m/s)
+double v_r = 0; // Generate setpoint value
+double e = v_r - v; // Control error
+P = c0 * e;
+D = c1 * D + c2 * (e - eold); // Modify this
+double u = P + I + D; // Set control signal
+actuateControlSignal(u);
+I = I + c3 * e; // Modify this
+eold = e; // Remember last control error
+}
+\end{lstlisting}\vspace*{2em}
+$
+\begin{cases}
+\texttt{c0} = K_p \\[1em]
+\texttt{c1} = \dfrac{T_f}{T_f+h}\\[1em]
+\texttt{c2} = \dfrac{K_d}{T_f+h} \\[1em]
+\texttt{c3} = K_i
+\end{cases}
+$
+\newpage
+\section{Reglerdesign - Yttre loop}
 
 
 
 
 \end{document}
-
-
-
-
-
-
-
-
-
 
 
 
