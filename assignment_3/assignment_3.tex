@@ -3,6 +3,8 @@
 
 \begin{document}
 \input{titlepage_3}
+
+\newpage
 \renewcommand{\contentsname}{Innehållsförteckning}
 \tableofcontents
 \pagestyle{empty}
@@ -41,8 +43,8 @@ $L(s) = K_p \cdot \dfrac{7.55}{s^2-75.85}$\\[0.5em]
 $s^0$&1 \\ 
 $s^1$&0\\ 
 $s^2$&$C_0$\\
-\end{tabular}\\[0.5em]
-Utan vidare beräkning kan vi dra slutsatsen att vi inte har alla koefficienter i tabellens första kolumn $(a_0,a_1,c_0,...)$. En P-regulator kan inte detta falla användas för att få samtliga poler i VHP i det återkopplade systemet.
+\end{tabular}\\[1em]
+Utan vidare beräkning kan vi dra slutsatsen att vi inte har alla koefficienter i tabellens första kolumn $(a_0,a_1,c_0,...)$ strikt positiva. En P-regulator kan i detta fall inte användas för att få samtliga poler i VHP i det återkopplade systemet.
 \newpage
 \subsection{PI-regulator}
 \begin{flalign*}
@@ -53,7 +55,7 @@ $s^0$&$d_0$ \\
 $s^1$&$c_0$\\ 
 $s^2$&0\\
 $s^3$& 1 \\
-\end{tabular}\\[0.5em]
+\end{tabular}\\[1em]
 Vi set att $a_1=0$, med samma argument som för en P-regulator går det inte att implementera en PI-regulator.
 \subsection{PD-regulator}
 \begin{flalign*}
@@ -72,7 +74,7 @@ C_0 &= \dfrac{a_1a_2-a_3a_0}{a_1} = \dfrac{(K_pT_f\cdot 7.55+K_d\cdot 7.55-75.85
 C_1 &= \dfrac{a_1a_4-a_5a_0}{a_1} =0  &\\[1em]
 d_0 &= \dfrac{c_0a_3-c_1a_1}{c_0} = \dfrac{K_d\cdot 7.55 \cdot (K_p \cdot 7.55-75.85)-0}{K_d\cdot 7.55} = K_p \cdot 7.55 - 75.85&\\
 \end{flalign*}
-Vi får att alla koefficienter i xxx första kolumn är strikt positiva om\\[0.5em]
+Vi får att alla koefficienter i tabellens första kolumn är strikt positiva om\\[1em]
 $
 \begin{cases}
 T_f>0\\
@@ -90,13 +92,26 @@ K_d = 2.4831 \\
 K_i = 241.5285 \\
 T_f =  0,0400\\
 \end{cases}
-$
+$\\[1.5em]
+Regulatorparametrarna beräknas genom följande ekvationer
+\begin{flalign}
+&T_f=\dfrac{1}{a_1+a_2+a_3+a_4}&
+\end{flalign}
+\begin{flalign}
+&K_i=\dfrac{a_1\cdot a_2 \cdot 1_3 \cdot a_4 \cdot T_f}{\alpha}&
+\end{flalign}
+\begin{flalign}
+&K_p=\dfrac{(a_4(a_1a_2+a_3(a_1+a_2))+a_1a_2a_3)T_f+\beta^2}{\alpha}-K_iT_f&
+\end{flalign}
+\begin{flalign}
+&K_d=\dfrac{(a_1a_2+a_4(a_1+a_2+a_3)+a_3(a_1+a_2))T_f+\beta^2}{\alpha}-K_p-T_f&
+\end{flalign}
 \newpage
 \section{Simulering av den inre balanserande regulatorn}\vspace*{1em}
 \begin{enumerate}
 \item[a)] Det finns inga anmärkningsvärda skillnader mellan det linjära och olinjära systemet. Det är fullt i linje med våran uppfattning då systemet är linjäriserat avseende på jämviktspunkten d.v.s. när roboten är i ett vertikalt läge.
 \item[b)] När det återkopplade systemets mätsignal innehåller störningar sker ett växlande spänningsfall som orsaker problem. Dessa problem inkluderar avläsningsfel som i sin tur leder till att är-värdet (i inre slingan) misstolkas.
-\item[c)] 
+\item[c)] Filterkonstanten definierar hur stor effekt av den deriverande komponenten som få ges uttryck i styrsignalen. Genom att ansätta ett högt värde på filterkonstanten $T_f$ ges P och I delen större verkan. Genom att istället ansätta ett lågt värde på filterkonstanten fås en PID-regulator exkl. lågpassfilter som således ger variation i mätstörningen.
 \end{enumerate}
 \newpage
 \section{Reglerdesign - Yttre loop}
@@ -226,12 +241,12 @@ Ett samband från formelsamlingen
 F_{PD} = K_p^p=\bigg(\dfrac{1+s\cdot \tau_d}{1+s\cdot \dfrac{\tau_d}{b}}\bigg), \quad b > 1
 \end{equation}
 \begin{flalign*}
-&|F_{PD}(j\omega_c)| = K_p^p\cdot\Bigg(\dfrac{\sqrt{1+(\omega_c \tau_d)^2}}{\sqrt{1+(\dfrac{\omega_c \tau_d}{b})^2}}\Bigg), \quad \Rightarrow K_p^p \approx 0.006963596 &
+&|F_{PD}(j\omega_c)| = K_p^p\cdot\Bigg(\dfrac{\sqrt{1+(\omega_c \tau_d)^2}}{\sqrt{1+(\dfrac{\omega_c \tau_d}{b})^2}}\Bigg), \quad \Rightarrow K_p^p \approx -0.006963596 &
 \end{flalign*}
 Identifiering av övriga regulatorparametrar
 \begin{flalign*}
 &K_p^p\cdot \bigg(\dfrac{1+s\cdot \tau_d}{1+s\cdot \dfrac{\tau_d}{b}}\bigg) = K_p^p+\dfrac{K_p^pT_d^ps}{1+sT_f^p}, \quad \Rightarrow s\dfrac{\tau_d}{b} = T_f^ps & \\
 &\Rightarrow T_f^p \approx 1.061261261\\[1em]
-&T_d^p = \dfrac{K_d^p}{K_p^p}, \quad \Rightarrow K_d^p = K_p^p\cdot T_d^p, \quad \Rightarrow K_d^p \approx 0.0336253
+&T_d^p = \dfrac{K_d^p}{K_p^p}, \quad \Rightarrow K_d^p = K_p^p\cdot T_d^p, \quad \Rightarrow K_d^p \approx -0.0336253
 \end{flalign*}
 \end{document}
